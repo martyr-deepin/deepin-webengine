@@ -83,7 +83,8 @@ WebContentsAdapterClient::NavigationType pageTransitionToNavigationType(ui::Page
 
 QWebEngineUrlRequestInfo::ResourceType toQt(content::ResourceType resourceType)
 {
-    if (resourceType >= 0 && resourceType < content::ResourceType(QWebEngineUrlRequestInfo::ResourceTypeLast))
+    //if (resourceType >= 0 && resourceType < content::ResourceType(QWebEngineUrlRequestInfo::ResourceTypeLast))
+    if (resourceType >= 0 && resourceType < content::ResourceType(18))
         return static_cast<QWebEngineUrlRequestInfo::ResourceType>(resourceType);
     return QWebEngineUrlRequestInfo::ResourceTypeUnknown;
 }

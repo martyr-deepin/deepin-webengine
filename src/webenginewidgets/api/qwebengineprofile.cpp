@@ -171,7 +171,8 @@ QWebEngineProfilePrivate::~QWebEngineProfilePrivate()
 
 QSharedPointer<QtWebEngineCore::BrowserContextAdapter> QWebEngineProfilePrivate::browserContext() const
 {
-    return m_browserContext ? m_browserContext->browserContextRef : nullptr;
+    return m_browserContext ? m_browserContext->browserContextRef :
+      QSharedPointer<QtWebEngineCore::BrowserContextAdapter>(nullptr);
 }
 
 void QWebEngineProfilePrivate::cancelDownload(quint32 downloadId)
