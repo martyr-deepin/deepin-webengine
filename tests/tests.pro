@@ -1,3 +1,3 @@
 TEMPLATE = subdirs
 
-SUBDIRS +=  auto quicktestbrowser
+#SUBDIRS +=  auto quicktestbrowser
