@@ -1,0 +1,215 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+export NINJA_PATH=/usr/bin/ninja
+export NINJAFLAGS=-v
+include /usr/share/dpkg/default.mk
+
+DEB_HOST_ARCH_BITS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_BITS)
+
+# TODO: properly integrate with the other debug setting
+ifeq (32,$(DEB_HOST_ARCH_BITS))
+       export DEB_CFLAGS_MAINT_APPEND = -g1
+       export DEB_CXXFLAGS_MAINT_APPEND = -g1
+endif
+
+export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+export QT_SELECT := qt5
+
+VERSION_CLEAN_UPSTREAM = $(call dpkg_late_eval,VERSION_CLEAN_UPSTREAM,echo '$(DEB_VERSION_UPSTREAM)' | sed -e 's/\(~\|+\).*//')
+
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+gstab_architectures :=
+fulldebug_architectures :=
+disabled_jit_architectures := armel mips mipsel
+disabled_pch_architectures := amd64 powerpc s390x
+
+small_architectures := armhf mipsel
+no_gold_architectures := arm64 armhf mipsel
+
+defines+=skia_use_system_expat \
+         skia_use_system_freetype2 \
+         skia_use_system_json \
+         skia_use_system_libjpeg_turbo \
+         skia_use_system_libpng \
+         skia_use_system_libwebp \
+         skia_use_system_lua \
+         skia_use_system_zlib \
+         use_system_flac \
+         use_system_harfbuzz \
+         use_system_libevent \
+         use_system_libffi \
+         use_system_libjpeg \
+         use_system_libpng \
+         use_system_libxml \
+         use_system_libxslt \
+         use_system_minizip \
+         use_system_snappy \
+         use_system_zlib \
+         #skia_use_system_icu \
+         #use_system_jsoncpp \ # not used anymore
+         #use_system_libusb \ # not used anymore
+         #use_system_protobuf \ # not used
+         #use_system_speex \ # not used anymore
+         #use_system_v8 \ # not used anymore
+         #use_system_xdg_utils \ # not used anymore
+         # use_system_libxnvctrl \ # not used anymore
+         # use_system_sqlite \ # internal copy is needed for Qt 5.9.0
+         # use_system_libvpx # see #812091
+
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(small_architectures)))
+	defines += reduce_binary_size
+endif
+
+config_args = -proprietary-codecs \
+              -system-ffmpeg \
+              -system-opus \
+              -system-webp
+              #-system-webengine-icu
+
+touch_files = src/3rdparty/chromium/third_party/analytics/google-analytics-bundle.js \
+	      src/3rdparty/chromium/third_party/web-animations-js/sources/web-animations.min.js \
+	      src/3rdparty/chromium/third_party/web-animations-js/sources/web-animations-next-lite.min.js \
+	      src/3rdparty/chromium/third_party/web-animations-js/sources/web-animations-next.min.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/audits2_worker/lighthouse/lighthouse-background.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/diff/diff_match_patch.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/formatter_worker/acorn/acorn.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/gonzales/gonzales-scss.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/network/NetworkConfigView.js \
+	      src/3rdparty/chromium/third_party/WebKit/Source/devtools/front_end/settings/EditFileSystemView.js \
+	      src/3rdparty/chromium/ui/webui/resources/js/jstemplate_compiled.js
+
+%:
+	dh $@ --with pkgkde_symbolshelper
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -rf .qmake.cache
+	rm -rf config.tests/.qmake.cache
+	rm -rf qtwebengine-config.h
+
+	rm -rf $(CURDIR)/test_root
+	rm -rf $(CURDIR)/docs
+	rm -rf $(CURDIR)/.local
+	#rm -rf $(CURDIR)/src/3rdparty/chromium/third_party/jstemplate/jstemplate_compiled.js
+	#rm -rf $(CURDIR)/src/3rdparty/chromium/third_party/mocha/mocha.js
+	#rm -rf $(CURDIR)/examples/webenginewidgets/contentmanipulation/jquery*.js
+	#rm -rf $(CURDIR)/examples/webenginewidgets/markdowneditor/resources/3rdparty/marked*.js
+	#rm -rf $(CURDIR)/examples/webengine/recipebrowser/resources/pages/assets/3rdparty/marked*.js
+	
+	#for fname in $(touch_files); do \
+		#rm -rf $(CURDIR)/$${fname}; \
+	#done
+
+override_dh_auto_configure:
+	# Run qmake once to create .qmake.conf and be sure to append the following values.
+	qmake WEBENGINE_CONFIG+="$(defines)" QT_BUILD_PARTS+=" tests" QMAKE_EXTRA_ARGS+="$(config_args)"
+
+# Enable gstabs debugging symbols only on gstab_architectures.
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(gstab_architectures)))
+	echo "QMAKE_CXXFLAGS -= -g" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS += -gstabs" >> .qmake.conf
+# Enable normal debugging symbols only on fulldebug_architectures.
+else ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(fulldebug_architectures)))
+	echo "QMAKE_CXXFLAGS_DEBUG += -fdebug-types-section" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS += -fdebug-types-section" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS_RELEASE_WITH_DEBUGINFO += -fdebug-types-section" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS_RELEASE += -fdebug-types-section" >> .qmake.conf
+	echo "QMAKE_LFLAGS += -fdebug-types-section" >> .qmake.conf
+else
+# Disable debugging symbols in all the other archs.
+	echo "QMAKE_CFLAGS -= -g" >> .qmake.conf
+	echo "QMAKE_CFLAGS -= -gstabs" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS -= -g" >> .qmake.conf
+	echo "QMAKE_CXXFLAGS -= -gstabs" >> .qmake.conf
+	echo "QT_CONFIG -= force_debug_info" >> .qmake.conf
+	echo "QT_CONFIG -= separate_debug_info" >> .qmake.conf
+endif
+
+# Disable JIT on selected architectures
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(disabled_jit_architectures)))
+	echo "QMAKE_CXXFLAGS += -DENABLE_JIT=0" >> .qmake.conf
+endif
+
+# Disable header precompliation as it creates invalid includes on certain
+# architectures causing build failure. LP: 1395661
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(disabled_pch_architectures)))
+	echo "CONFIG -= precompile_header" >> .qmake.conf
+endif
+
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(small_architectures)))
+	echo "QMAKE_CXXFLAGS += --param ggc-min-expand=20" >> .qmake.conf
+	echo "QMAKE_CFLAGS += --param ggc-min-expand=20" >> .qmake.conf
+	echo "QMAKE_LFLAGS -= Wl,--gc-sections" >> .qmake.conf
+endif
+
+ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(no_gold_architectures)))
+	# Do not use ld.gold
+	echo "QMAKE_LFLAGS -= -fuse-ld=gold" >> .qmake.conf
+	echo "QMAKE_LFLAGS += -fuse-ld=bfd" >> .qmake.conf
+endif
+
+	# Make ld not cache the symbol tables of input files in memory to avoid memory exhaustion during the linking phase.
+	echo "QMAKE_LFLAGS += -Wl,--no-keep-memory" >> .qmake.conf
+	
+	# Missing hardening flag detected by blhc
+	echo "QMAKE_LFLAGS += -Wl,-z,now" >> .qmake.conf
+
+	# Run qmake again now with the proper values.
+	qmake  WEBENGINE_CONFIG+="$(defines)" QT_BUILD_PARTS+=" tests" QMAKE_EXTRA_ARGS+="$(config_args)"
+
+	# Create js files, that are needed for building step for arch and indep builds
+#	cd $(CURDIR)/src/3rdparty/chromium/third_party/jstemplate/; \
+#		closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS \
+#		--js util.js \
+#		--js jsevalcontext.js \
+#		--js jstemplate.js \
+#		--js exports.js \
+#		--js_output_file jstemplate_compiled.js
+#	
+#	>examples/webenginewidgets/contentmanipulation/jquery.js cat debian/missing-sources/jquery-*.js
+#	yui-compressor --type js "examples/webenginewidgets/contentmanipulation/jquery.js" -o "examples/webenginewidgets/contentmanipulation/jquery.min.js"
+#	>examples/webenginewidgets/markdowneditor/resources/3rdparty/marked.js tar xaf debian/missing-sources/marked*.tar.gz --wildcards --to-stdout '*/marked.js'
+#	>examples/webengine/recipebrowser/resources/pages/assets/3rdparty/marked.js tar xaf debian/missing-sources/marked*.tar.gz --wildcards --to-stdout '*/marked.js'
+#	>src/3rdparty/chromium/third_party/mocha/mocha.js tar xaf debian/missing-sources/mocha*.tar.gz --wildcards --to-stdout '*/mocha.js'
+#	yui-compressor --type js "examples/webenginewidgets/markdowneditor/resources/3rdparty/marked.js" -o "examples/webenginewidgets/markdowneditor/resources/3rdparty/marked.min.js"
+#	yui-compressor --type js "examples/webengine/recipebrowser/resources/pages/assets/3rdparty/marked.js" -o "examples/webengine/recipebrowser/resources/pages/assets/3rdparty/marked.min.js"
+
+	
+	#for fname in $(touch_files); do \
+	#	touch $(CURDIR)/$${fname}; \
+	#done
+
+override_dh_auto_build-arch:
+	dh_auto_build
+
+#we also need the resources.pak files, so we need the normal build.
+override_dh_auto_build-indep: override_dh_auto_build-arch
+	dh_auto_build -- docs
+
+override_dh_auto_install-arch:
+	dh_auto_install
+	
+	# Remove rpath from the offending binaries
+	chrpath -d $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
+	
+	# Fix wrong path in pkgconfig files
+	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
+	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
+	
+	# Remove libtool-like files
+	rm -fv debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
+
+override_dh_auto_install-indep: override_dh_auto_install-arch
+	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
+
+override_dh_install-arch:
+	dh_install --fail-missing
+
+override_dh_auto_test-indep:
+	# Do not attempt to run anything to make build-indep work
