@@ -196,17 +196,17 @@ override_dh_auto_install-arch:
 	dh_auto_install
 	
 	# Remove rpath from the offending binaries
-	chrpath -d $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
+	chrpath -d $(CURDIR)/debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
 	
 	# Fix wrong path in pkgconfig files
-	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
+	find $(CURDIR)/debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
 	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
 	
 	# Remove libtool-like files
-	rm -fv debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
+	rm -fv debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
 
 override_dh_auto_install-indep: override_dh_auto_install-arch
-	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
+	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/libdeepin-webengine install_docs
 
 override_dh_install-arch:
 	dh_install --fail-missing
