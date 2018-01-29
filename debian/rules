@@ -187,7 +187,7 @@ endif
 
 override_dh_auto_build-arch:
 	dh_auto_build
-	$(CURDIR)/tools/update-pkg-name.sh
+	bash $(CURDIR)/tools/update-pkg-name.sh
 
 #we also need the resources.pak files, so we need the normal build.
 override_dh_auto_build-indep: override_dh_auto_build-arch
