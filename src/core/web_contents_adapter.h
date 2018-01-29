@@ -42,7 +42,7 @@
 
 #include "qtwebenginecoreglobal.h"
 #include "web_contents_adapter_client.h"
-#include <QtWebEngineCore/qwebenginehttprequest.h>
+#include <DeepinWebEngineCore/qwebenginehttprequest.h>
 
 #include <QScopedPointer>
 #include <QSharedPointer>

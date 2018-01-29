@@ -46,7 +46,7 @@
 
 #include "print_view_manager_base_qt.h"
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
 #include "base/memory/ref_counted.h"
 #include "base/strings/string16.h"
 #include "components/prefs/pref_member.h"
