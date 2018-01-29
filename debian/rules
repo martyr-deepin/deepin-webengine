@@ -208,8 +208,8 @@ override_dh_auto_install-arch:
 ovrride_dh_auto_install-indep: override_dh_auto_install-arch
 	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
 
-override_dh_install-arch:
-	dh_install --fail-missing
+#override_dh_install-arch:
+#	dh_install --fail-missing
 
 override_dh_auto_test-indep:
 	# Do not attempt to run anything to make build-indep work
