@@ -2,3 +2,4 @@ usr/lib/*/lib*.so
 usr/lib/*/cmake/*
 usr/lib/*/pkgconfig/*pc
 usr/include/*/qt5/*
+usr/lib/*/qt5/mkspecs/modules/*.pri
