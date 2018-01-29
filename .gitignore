@@ -40,6 +40,8 @@ moc_*.cpp
 
 
 
+debian/.debhelper/
+debian/libdeepin-webengine/
 config.log
 config.tests/alsa/alsa
 config.tests/khr/khr

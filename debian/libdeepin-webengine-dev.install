@@ -1,0 +1,3 @@
+usr/lib/*/cmake/Deepin*
+usr/lib/*/pkgconfig/Deepin*pc
+usr/include/*/deepin-webengine/*

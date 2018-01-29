@@ -90,4 +90,17 @@ Description: Web content engine library for Qt - Core
  QtWebEngine provides a Web browser engine that makes it easy to embed content
  from the World Wide Web into your Qt application.
  .
- This package contains the core QtWebEngine library.
+ This package contains QtWebEngine library.
+
+Package: libdeepin-webengine-dev
+Architecture: amd64 arm64 armhf i386 mipsel
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         libdeepin-webengine
+Pre-Depends: ${misc:Pre-Depends}
+Description: Web content engine library for Qt - Core
+ QtWebEngine provides a Web browser engine that makes it easy to embed content
+ from the World Wide Web into your Qt application.
+ .
+ This package contains headers of QtWebEngine library.
