@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 
 # Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
+export DH_VERBOSE=1
 export NINJA_PATH=/usr/bin/ninja
 export NINJAFLAGS=-v
 include /usr/share/dpkg/default.mk
@@ -187,7 +187,6 @@ endif
 
 override_dh_auto_build-arch:
 	dh_auto_build
-	bash $(CURDIR)/tools/update-pkg-name.sh
 
 #we also need the resources.pak files, so we need the normal build.
 override_dh_auto_build-indep: override_dh_auto_build-arch
@@ -195,22 +194,24 @@ override_dh_auto_build-indep: override_dh_auto_build-arch
 
 override_dh_auto_install-arch:
 	dh_auto_install
-	
+
 	# Remove rpath from the offending binaries
-	chrpath -d $(CURDIR)/debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
+	chrpath -d $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
+
+	bash $(CURDIR)/tools/update-pkg-name.sh
 	
 	# Fix wrong path in pkgconfig files
-	find $(CURDIR)/debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
+	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
 	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
 	
 	# Remove libtool-like files
-	rm -fv debian/libdeepin-webengine/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
+	rm -fv debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
 
-override_dh_auto_install-indep: override_dh_auto_install-arch
-	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/libdeepin-webengine install_docs
+#override_dh_auto_install-indep: override_dh_auto_install-arch
+#	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
 
-override_dh_install-arch:
-	dh_install --fail-missing
+#override_dh_install-arch:
+	#dh_install --fail-missing
 
 override_dh_auto_test-indep:
 	# Do not attempt to run anything to make build-indep work

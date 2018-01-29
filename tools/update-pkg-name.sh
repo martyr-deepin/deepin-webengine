@@ -4,7 +4,7 @@
 
 set -x
 
-QT_INSTALL_PREFIX=$PWD/debian/libdeepin-webengine/usr
+QT_INSTALL_PREFIX=$PWD/debian/tmp/usr
 ARCH_LIB=/x86_64-linux-gnu
 QT_INSTALL_LIBS=${QT_INSTALL_PREFIX}/lib${ARCH_LIB}
 QT_INSTALL_HEADERS=${QT_INSTALL_PREFIX}/include${ARCH_LIB}/qt5
@@ -27,13 +27,6 @@ updateLibs() {
   ln -sf libDeepinWebEngineWidgets.so.5.6.1 libDeepinWebEngineWidgets.so.5.6 && \
   ln -sf libDeepinWebEngineWidgets.so.5.6 libDeepinWebEngineWidgets.so.5 && \
   ln -sf libDeepinWebEngineWidgets.so.5 libDeepinWebEngineWidgets.so
-}
-
-removeExamples() {
-  # Remove qt module declarations
-  # Remove examples
-  rm -rvf ${QT_INSTALL_ARCHDATA}/mkspecs && \
-  rm -rvf ${QT_INSTALL_ARCHDATA}/examples
 }
 
 # Move bin.
@@ -91,7 +84,6 @@ updateCmake() {
 
 main() {
   updateLibs && \
-  removeExamples && \
   updateBins && \
   updateLibexec && \
   updateResources && \

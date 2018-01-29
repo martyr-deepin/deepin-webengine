@@ -40,8 +40,17 @@ moc_*.cpp
 
 
 
+debian/libdeepin-webengine-dev.substvars
+debian/libdeepin-webengine-dev/
+debian/libdeepin-webengine.substvars
+debian/debhelper-build-stamp
+debian/files
+debian/libdeepin-webengine-dev.debhelper.log
+debian/libdeepin-webengine.debhelper.log
+debian/tmp/
 debian/.debhelper/
 debian/libdeepin-webengine/
+
 config.log
 config.tests/alsa/alsa
 config.tests/khr/khr
