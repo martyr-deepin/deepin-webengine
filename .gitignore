@@ -39,7 +39,8 @@ moc_*.cpp
 *.jsc
 
 
-
+src/core/DeepinWebEngineCore.version.in
+src/webenginewidgets/DeepinWebEngineWidgets.version.in
 debian/libdeepin-webengine-dev.substvars
 debian/libdeepin-webengine-dev/
 debian/libdeepin-webengine.substvars

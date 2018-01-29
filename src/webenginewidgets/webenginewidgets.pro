@@ -1,9 +1,9 @@
-TARGET = QtWebEngineWidgets
+TARGET = DeepinWebEngineWidgets
 
 # For our export macros
 DEFINES += QT_BUILD_WEBENGINEWIDGETS_LIB
 
-QT += webenginecore widgets network quick
+QT += deepinwebenginecore widgets network quick
 QT_PRIVATE += quick-private gui-private core-private widgets-private quickwidgets
 
 INCLUDEPATH += $$PWD api ../core ../core/api ../webengine/api

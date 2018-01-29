@@ -1,4 +1,4 @@
-MODULE = webenginecore
+MODULE = deepinwebenginecore
 
 include(core_common.pri)
 # Needed to set a CFBundleIdentifier
@@ -12,7 +12,7 @@ linking_pri = $$OUT_PWD/$$getConfigDir()/$${TARGET}.pri
 
 load(qt_module)
 
-api_library_name = qtwebenginecoreapi$$qtPlatformTargetSuffix()
+api_library_name = deepinwebenginecoreapi$$qtPlatformTargetSuffix()
 api_library_path = $$OUT_PWD/api/$$getConfigDir()
 
 # Do not precompile any headers. We are only interested in the linker step.
@@ -74,30 +74,30 @@ REPACK_DIR = $$OUT_PWD/$$getConfigDir()
 # Duplicated from resources/resources.gyp
 LOCALE_LIST = am ar bg bn ca cs da de el en-GB en-US es-419 es et fa fi fil fr gu he hi hr hu id it ja kn ko lt lv ml mr ms nb nl pl pt-BR pt-PT ro ru sk sl sr sv sw ta te th tr uk vi zh-CN zh-TW
 for(LOC, LOCALE_LIST) {
-    locales.files += $$REPACK_DIR/qtwebengine_locales/$${LOC}.pak
+    locales.files += $$REPACK_DIR/deepinwebengine_locales/$${LOC}.pak
 }
-resources.files = $$REPACK_DIR/qtwebengine_resources.pak \
-    $$REPACK_DIR/qtwebengine_resources_100p.pak \
-    $$REPACK_DIR/qtwebengine_resources_200p.pak \
-    $$REPACK_DIR/qtwebengine_devtools_resources.pak
+resources.files = $$REPACK_DIR/deepinwebengine_resources.pak \
+    $$REPACK_DIR/deepinwebengine_resources_100p.pak \
+    $$REPACK_DIR/deepinwebengine_resources_200p.pak \
+    $$REPACK_DIR/deepinwebengine_devtools_resources.pak
 
 icu.files = $$OUT_PWD/$$getConfigDir()/icudtl.dat
 
 !debug_and_release|!build_all|CONFIG(release, debug|release) {
     qtConfig(framework) {
         locales.version = Versions
-        locales.path = Resources/qtwebengine_locales
+        locales.path = Resources/deepinwebengine_locales
         resources.version = Versions
         resources.path = Resources
         icu.version = Versions
         icu.path = Resources
         # No files, this prepares the bundle Helpers symlink, process.pro will create the directories
-        qtwebengineprocessplaceholder.version = Versions
-        qtwebengineprocessplaceholder.path = Helpers
-        QMAKE_BUNDLE_DATA += icu locales resources qtwebengineprocessplaceholder
+        deepinwebengineprocessplaceholder.version = Versions
+        deepinwebengineprocessplaceholder.path = Helpers
+        QMAKE_BUNDLE_DATA += icu locales resources deepinwebengineprocessplaceholder
     } else {
         locales.CONFIG += no_check_exist
-        locales.path = $$[QT_INSTALL_TRANSLATIONS]/qtwebengine_locales
+        locales.path = $$[QT_INSTALL_TRANSLATIONS]/deepinwebengine_locales
         resources.CONFIG += no_check_exist
         resources.path = $$[QT_INSTALL_DATA]/resources
         INSTALLS += locales resources

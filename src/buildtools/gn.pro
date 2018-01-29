@@ -5,7 +5,7 @@ option(host_build)
 
 isQtMinimum(5, 8) {
     include($$QTWEBENGINE_OUT_ROOT/qtwebengine-config.pri)
-    QT_FOR_CONFIG += webengine-private
+    QT_FOR_CONFIG += deepinwebengine-private
 }
 
 build_pass|!debug_and_release {

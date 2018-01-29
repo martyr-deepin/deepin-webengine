@@ -1,15 +1,15 @@
-TARGET = qtwebenginecoreapi$$qtPlatformTargetSuffix()
+TARGET = deepinwebenginecoreapi$$qtPlatformTargetSuffix()
 DESTDIR = $$OUT_PWD/$$getConfigDir()
 
 TEMPLATE = lib
 
 CONFIG += staticlib c++11
 QT += network core-private
-QT_PRIVATE += webenginecoreheaders-private
+QT_PRIVATE += deepinwebenginecoreheaders-private
 
 # Don't create .prl file for this intermediate library because
 # their contents get used when linking against them, breaking
-# "-Wl,-whole-archive -lqtwebenginecoreapi --Wl,-no-whole-archive"
+# "-Wl,-whole-archive -ldeepinwebenginecoreapi --Wl,-no-whole-archive"
 CONFIG -= create_prl
 
 # Copy this logic from qt_module.prf so that the intermediate library can be

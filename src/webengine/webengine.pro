@@ -1,9 +1,9 @@
-TARGET = QtWebEngine
+TARGET = DeepinWebEngine
 
 # For our export macros
 DEFINES += QT_BUILD_WEBENGINE_LIB
 
-QT += qml quick webenginecore
+QT += qml quick deepinwebenginecore
 QT_PRIVATE += quick-private gui-private core-private
 
 QMAKE_DOCS = $$PWD/doc/qtwebengine.qdocconf
