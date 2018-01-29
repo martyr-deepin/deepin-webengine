@@ -41,7 +41,7 @@
 
 #include "web_engine_settings.h"
 
-#include <QtWebEngine/QQuickWebEngineProfile>
+#include <DeepinWebEngine/QQuickWebEngineProfile>
 #include <QtCore/QList>
 
 QT_BEGIN_NAMESPACE

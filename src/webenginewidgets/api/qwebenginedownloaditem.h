@@ -40,7 +40,7 @@
 #ifndef QWEBENGINEDOWNLOADITEM_H
 #define QWEBENGINEDOWNLOADITEM_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 
 #include <QtCore/qobject.h>
 

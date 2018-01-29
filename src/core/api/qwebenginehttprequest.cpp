@@ -39,7 +39,7 @@
 
 #include "qplatformdefs.h"
 #include <QtCore/qshareddata.h>
-#include <QtWebEngineCore/qwebenginehttprequest.h>
+#include <DeepinWebEngineCore/qwebenginehttprequest.h>
 #include <algorithm>
 
 QT_BEGIN_NAMESPACE

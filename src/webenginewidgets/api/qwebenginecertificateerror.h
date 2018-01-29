@@ -40,7 +40,7 @@
 #ifndef QWEBENGINECERTIFICATEERROR_H
 #define QWEBENGINECERTIFICATEERROR_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qurl.h>

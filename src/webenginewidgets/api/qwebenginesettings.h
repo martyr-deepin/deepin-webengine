@@ -40,7 +40,7 @@
 #ifndef QWEBENGINESETTINGS_H
 #define QWEBENGINESETTINGS_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qstring.h>
 

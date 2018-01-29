@@ -42,7 +42,7 @@
 
 #include <QtCore/qobject.h>
 #include <QtCore/qurl.h>
-#include <QtWebEngine/qtwebengineglobal.h>
+#include <DeepinWebEngine/qtwebengineglobal.h>
 
 QT_BEGIN_NAMESPACE
 class QQuickWebEngineScriptPrivate;

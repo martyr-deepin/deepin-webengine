@@ -40,11 +40,11 @@
 #ifndef QWEBENGINEPAGE_H
 #define QWEBENGINEPAGE_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
-#include <QtWebEngineWidgets/qwebenginecertificateerror.h>
-#include <QtWebEngineWidgets/qwebenginedownloaditem.h>
-#include <QtWebEngineCore/qwebenginecallback.h>
-#include <QtWebEngineCore/qwebenginehttprequest.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qwebenginecertificateerror.h>
+#include <DeepinWebEngineWidgets/qwebenginedownloaditem.h>
+#include <DeepinWebEngineCore/qwebenginecallback.h>
+#include <DeepinWebEngineCore/qwebenginehttprequest.h>
 
 #include <QtCore/qobject.h>
 #include <QtCore/qurl.h>

@@ -40,7 +40,7 @@
 #ifndef QWEBENGINEHTTPREQUEST_H
 #define QWEBENGINEHTTPREQUEST_H
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
 #include <QtCore/qshareddata.h>
 #include <QtCore/qvector.h>
 #include <QtCore/qmap.h>

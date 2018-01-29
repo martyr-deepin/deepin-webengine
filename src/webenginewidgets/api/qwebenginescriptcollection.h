@@ -40,8 +40,8 @@
 #ifndef QWEBENGINESCRIPTCOLLECTION_H
 #define QWEBENGINESCRIPTCOLLECTION_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
-#include <QtWebEngineWidgets/qwebenginescript.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qwebenginescript.h>
 
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qlist.h>

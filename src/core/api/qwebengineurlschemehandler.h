@@ -40,7 +40,7 @@
 #ifndef QWEBENGINEURLSCHEMEHANDLER_H
 #define QWEBENGINEURLSCHEMEHANDLER_H
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
 
 #include <QtCore/qobject.h>
 

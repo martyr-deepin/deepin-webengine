@@ -40,7 +40,7 @@
 #ifndef QWEBENGINEFULLSCREENREQUEST_H
 #define QWEBENGINEFULLSCREENREQUEST_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 #include <QtCore/qurl.h>
 #include <QtCore/qpointer.h>
 

@@ -45,7 +45,7 @@
 #include <QtCore/qdatetime.h>
 #include <QtCore/qshareddata.h>
 #include <QtGui/qicon.h>
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 
 QT_BEGIN_NAMESPACE
 

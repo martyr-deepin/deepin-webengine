@@ -40,7 +40,7 @@
 #ifndef QWEBENGINEURLREQUESTINFO_H
 #define QWEBENGINEURLREQUESTINFO_H
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
 
 #include <QtCore/qscopedpointer.h>
 #include <QtCore/qurl.h>

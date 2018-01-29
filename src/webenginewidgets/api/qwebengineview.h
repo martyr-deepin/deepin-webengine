@@ -44,9 +44,9 @@
 #include <QtNetwork/qnetworkaccessmanager.h>
 #include <QtWidgets/qwidget.h>
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
-#include <QtWebEngineWidgets/qwebenginepage.h>
-#include <QtWebEngineCore/qwebenginehttprequest.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qwebenginepage.h>
+#include <DeepinWebEngineCore/qwebenginehttprequest.h>
 
 QT_BEGIN_NAMESPACE
 class QContextMenuEvent;

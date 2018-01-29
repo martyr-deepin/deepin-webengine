@@ -51,7 +51,7 @@
 // We mean it.
 //
 
-#include <QtWebEngineWidgets/qwebengineview.h>
+#include <DeepinWebEngineWidgets/qwebengineview.h>
 
 #include <QtWidgets/qaccessiblewidget.h>
 

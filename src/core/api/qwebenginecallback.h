@@ -40,7 +40,7 @@
 #ifndef QWEBENGINECALLBACK_H
 #define QWEBENGINECALLBACK_H
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
 
 #include <QtCore/qshareddata.h>
 #include <QtCore/qstring.h>

@@ -40,8 +40,8 @@
 #ifndef QWEBENGINECOOKIESTORE_H
 #define QWEBENGINECOOKIESTORE_H
 
-#include <QtWebEngineCore/qtwebenginecoreglobal.h>
-#include <QtWebEngineCore/qwebenginecallback.h>
+#include <DeepinWebEngineCore/qtwebenginecoreglobal.h>
+#include <DeepinWebEngineCore/qwebenginecallback.h>
 
 #include <QtCore/qobject.h>
 #include <QtCore/qscopedpointer.h>

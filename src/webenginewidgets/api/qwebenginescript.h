@@ -40,7 +40,7 @@
 #ifndef QWEBENGINESCRIPT_H
 #define QWEBENGINESCRIPT_H
 
-#include <QtWebEngineWidgets/qtwebenginewidgetsglobal.h>
+#include <DeepinWebEngineWidgets/qtwebenginewidgetsglobal.h>
 
 #include <QtCore/qshareddata.h>
 #include <QtCore/qstring.h>
