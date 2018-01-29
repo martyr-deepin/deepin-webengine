@@ -1,5 +1,7 @@
 TARGET = DeepinWebEngineWidgets
 
+MODULE = deepinwebenginewidgets
+
 # For our export macros
 DEFINES += QT_BUILD_WEBENGINEWIDGETS_LIB
 
