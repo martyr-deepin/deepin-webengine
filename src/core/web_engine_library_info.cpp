@@ -189,13 +189,13 @@ QString localesPath()
     return getResourcesPath(frameworkBundle()) % QLatin1String("/qtwebengine_locales");
 #else
     static bool initialized = false;
-    static QString potentialLocalesPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath) % QDir::separator() % QLatin1String("qtwebengine_locales");
+    static QString potentialLocalesPath = QLibraryInfo::location(QLibraryInfo::TranslationsPath) % QDir::separator() % QLatin1String("deepinwebengine_locales");
 
     if (!initialized) {
         initialized = true;
         if (!QFileInfo::exists(potentialLocalesPath)) {
             qWarning("Installed Qt WebEngine locales directory not found at location %s. Trying application directory...", qPrintable(potentialLocalesPath));
-            potentialLocalesPath = QCoreApplication::applicationDirPath() % QDir::separator() % QLatin1String("qtwebengine_locales");
+            potentialLocalesPath = QCoreApplication::applicationDirPath() % QDir::separator() % QLatin1String("deepinwebengine_locales");
         }
         if (!QFileInfo::exists(potentialLocalesPath)) {
             qWarning("Qt WebEngine locales directory not found at location %s. Trying fallback directory... Translations MAY NOT not be correct.", qPrintable(potentialLocalesPath));
