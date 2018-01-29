@@ -22,7 +22,7 @@ repack("qtwebengine_repack_resources") {
     "$root_gen_dir/net/net_resources.pak",
     "$root_gen_dir/ui/resources/webui_resources.pak",
   ]
-  output = "$root_out_dir/qtwebengine_resources.pak"
+  output = "$root_out_dir/deepinwebengine_resources.pak"
   deps = [
      "//components/resources:components_resources_grit",
      "//content:resources_grit",
@@ -40,7 +40,7 @@ repack("qtwebengine_repack_resources_100") {
     "$root_gen_dir/chrome/renderer_resources_100_percent.pak",
     "$root_gen_dir/blink/public/resources/blink_image_resources_100_percent.pak",
   ]
-  output = "$root_out_dir/qtwebengine_resources_100p.pak"
+  output = "$root_out_dir/deepinwebengine_resources_100p.pak"
   deps = [
     "//third_party/WebKit/public:image_resources_grit",
     "//chrome/renderer:resources_grit",
@@ -58,7 +58,7 @@ repack("qtwebengine_repack_resources_200") {
     "$root_gen_dir/chrome/renderer_resources_200_percent.pak",
     "$root_gen_dir/blink/public/resources/blink_image_resources_200_percent.pak",
   ]
-  output = "$root_out_dir/qtwebengine_resources_200p.pak"
+  output = "$root_out_dir/deepinwebengine_resources_200p.pak"
   deps = [
     "//third_party/WebKit/public:image_resources_grit",
     "//chrome/renderer:resources_grit",
@@ -72,7 +72,7 @@ repack("qtwebengine_repack_resources_devtools") {
   sources = [
     "$root_gen_dir/blink/devtools_resources.pak",
   ]
-  output = "$root_out_dir/qtwebengine_devtools_resources.pak"
+  output = "$root_out_dir/deepinwebengine_devtools_resources.pak"
   deps = [
     "//content/browser/devtools:devtools_resources_grit"
   ]

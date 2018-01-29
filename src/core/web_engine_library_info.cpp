@@ -285,15 +285,15 @@ QString resourcesDataPath()
     static QString potentialResourcesPath = QLibraryInfo::location(QLibraryInfo::DataPath) % QLatin1String("/resources");
     if (!initialized) {
         initialized = true;
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/qtwebengine_resources.pak"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepinwebengine_resources.pak"))) {
             qWarning("Qt WebEngine resources not found at %s. Trying parent directory...", qPrintable(potentialResourcesPath));
             potentialResourcesPath = QLibraryInfo::location(QLibraryInfo::DataPath);
         }
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/qtwebengine_resources.pak"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepinwebengine_resources.pak"))) {
             qWarning("Qt WebEngine resources not found at %s. Trying application directory...", qPrintable(potentialResourcesPath));
             potentialResourcesPath = QCoreApplication::applicationDirPath();
         }
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/qtwebengine_resources.pak"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepinwebengine_resources.pak"))) {
             qWarning("Qt WebEngine resources not found at %s. Trying fallback directory... The application MAY NOT work.", qPrintable(potentialResourcesPath));
             potentialResourcesPath = fallbackDir();
         }
@@ -309,13 +309,13 @@ base::FilePath WebEngineLibraryInfo::getPath(int key)
     QString directory;
     switch (key) {
     case QT_RESOURCES_PAK:
-        return toFilePath(resourcesDataPath() % QLatin1String("/qtwebengine_resources.pak"));
+        return toFilePath(resourcesDataPath() % QLatin1String("/deepinwebengine_resources.pak"));
     case QT_RESOURCES_100P_PAK:
-        return toFilePath(resourcesDataPath() % QLatin1String("/qtwebengine_resources_100p.pak"));
+        return toFilePath(resourcesDataPath() % QLatin1String("/deepinwebengine_resources_100p.pak"));
     case QT_RESOURCES_200P_PAK:
-        return toFilePath(resourcesDataPath() % QLatin1String("/qtwebengine_resources_200p.pak"));
+        return toFilePath(resourcesDataPath() % QLatin1String("/deepinwebengine_resources_200p.pak"));
     case QT_RESOURCES_DEVTOOLS_PAK:
-        return toFilePath(resourcesDataPath() % QLatin1String("/qtwebengine_devtools_resources.pak"));
+        return toFilePath(resourcesDataPath() % QLatin1String("/deepinwebengine_devtools_resources.pak"));
     case base::FILE_EXE:
     case content::CHILD_PROCESS_EXE:
         return toFilePath(subProcessPath());
