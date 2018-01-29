@@ -1,4 +1,4 @@
-usr/lib/*/deepin-webengine/lib*.so.5*
-usr/lib/*/deepin-webengine/bin
-usr/lib/*/deepin-webengine/libexec
-usr/share/deepin-webengine/*
+usr/lib/*/lib*.so.5*
+usr/lib/*/qt5/bin
+usr/lib/*/qt5/libexec
+usr/share/qt5/*

@@ -1,4 +1,4 @@
-usr/lib/*/deepin-webengine/lib*.so
-usr/lib/*/cmake/Deepin*
-usr/lib/*/pkgconfig/Deepin*pc
-usr/include/*/deepin-webengine/*
+usr/lib/*/lib*.so
+usr/lib/*/cmake/*
+usr/lib/*/pkgconfig/*pc
+usr/include/*/qt5/*
