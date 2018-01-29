@@ -110,6 +110,8 @@ override_dh_auto_configure:
 	# Run qmake once to create .qmake.conf and be sure to append the following values.
 	qmake WEBENGINE_CONFIG+="$(defines)" QT_BUILD_PARTS+=" tests" QMAKE_EXTRA_ARGS+="$(config_args)"
 
+	echo "QMAKE_LFLAGS += \"-Wl,-rpath,\'/usr/lib/${DEB_HOST_ARCH}/deepin-webengine\'\"" >> .qmake.conf
+
 # Enable gstabs debugging symbols only on gstab_architectures.
 ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(gstab_architectures)))
 	echo "QMAKE_CXXFLAGS -= -g" >> .qmake.conf
@@ -196,7 +198,7 @@ override_dh_auto_install-arch:
 	dh_auto_install
 
 	# Remove rpath from the offending binaries
-	chrpath -d $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
+	#chrpath -d $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/libexec/QtWebEngineProcess
 
 	bash $(CURDIR)/tools/update-pkg-name.sh
 	

@@ -18,15 +18,17 @@ DEEPIN_INSTALL_LIBEXEC=${DEEPIN_INSTALL_ARCHDATA}/libexec
 
 # Move dynamic libraries
 updateLibs() {
-  cd ${QT_INSTALL_LIBS}
-  cp -f libQt5WebEngineCore.so.5.6.1 libDeepinWebEngineCore.so.5.6.1 && \
-  ln -sf libDeepinWebEngineCore.so.5.6.1 libDeepinWebEngineCore.so.5.6 && \
-  ln -sf libDeepinWebEngineCore.so.5.6 libDeepinWebEngineCore.so.5 && \
-  ln -sf libDeepinWebEngineCore.so.5 libDeepinWebEngineCore.so && \
-  cp -f libQt5WebEngineWidgets.so.5.6.1 libDeepinWebEngineWidgets.so.5.6.1 && \
-  ln -sf libDeepinWebEngineWidgets.so.5.6.1 libDeepinWebEngineWidgets.so.5.6 && \
-  ln -sf libDeepinWebEngineWidgets.so.5.6 libDeepinWebEngineWidgets.so.5 && \
-  ln -sf libDeepinWebEngineWidgets.so.5 libDeepinWebEngineWidgets.so
+  rm -rf ${DEEPIN_INSTALL_ARCHDATA} && \
+  mkdir -pv ${DEEPIN_INSTALL_ARCHDATA} && \
+  cd ${DEEPIN_INSTALL_ARCHDATA} && \
+  cp -f ../libQt5WebEngineCore.so.5.6.1 libQt5WebEngineCore.so.5.6.1 && \
+  ln -sf libQt5WebEngineCore.so.5.6.1 libQt5WebEngineCore.so.5.6 && \
+  ln -sf libQt5WebEngineCore.so.5.6 libQt5WebEngineCore.so.5 && \
+  ln -sf libQt5WebEngineCore.so.5 libQt5WebEngineCore.so && \
+  cp -f ../libQt5WebEngineWidgets.so.5.6.1 libQt5WebEngineWidgets.so.5.6.1 && \
+  ln -sf libQt5WebEngineWidgets.so.5.6.1 libQt5WebEngineWidgets.so.5.6 && \
+  ln -sf libQt5WebEngineWidgets.so.5.6 libQt5WebEngineWidgets.so.5 && \
+  ln -sf libQt5WebEngineWidgets.so.5 libQt5WebEngineWidgets.so
 }
 
 # Move bin.
@@ -65,7 +67,10 @@ updatePkgConfig() {
     ${QT_INSTALL_LIBS}/pkgconfig/DeepinWebEngineCore.pc && \
   cp -rf ${QT_INSTALL_LIBS}/pkgconfig/Qt5WebEngineWidgets.pc \
     ${QT_INSTALL_LIBS}/pkgconfig/DeepinWebEngineWidgets.pc && \
-  sed -i 's/Qt5WebEngine/DeepinWebEngine/g' ${QT_INSTALL_LIBS}/pkgconfig/*pc
+  sed -i -e '/^includedir/s/qt5/deepin-webengine/' \
+    -e '/^libdir/s/$/deepin-webengine/' \
+    -e 's/-lQt5WebEngineCore/-L${libdir} -lQt5WebEngineCore/' \
+    ${QT_INSTALL_LIBS}/pkgconfig/Deepin*pc
 }
 
 # Update cmake

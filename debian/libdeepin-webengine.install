@@ -1,3 +1,4 @@
-usr/lib/*/libDeepinWebEngine*
-usr/lib/*/deepin-webengine/*
+usr/lib/*/deepin-webengine/lib*.so.5*
+usr/lib/*/deepin-webengine/bin
+usr/lib/*/deepin-webengine/libexec
 usr/share/deepin-webengine/*

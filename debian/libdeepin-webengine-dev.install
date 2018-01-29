@@ -1,3 +1,4 @@
+usr/lib/*/deepin-webengine/lib*.so
 usr/lib/*/cmake/Deepin*
 usr/lib/*/pkgconfig/Deepin*pc
 usr/include/*/deepin-webengine/*
