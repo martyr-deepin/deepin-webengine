@@ -97,7 +97,9 @@ Architecture: amd64 arm64 armhf i386 mipsel
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         libdeepin-webengine
+         libdeepin-webengine,
+         libqt5webchannel5-dev,
+         qtpositioning5-dev,
 Pre-Depends: ${misc:Pre-Depends}
 Description: Web content engine library for Qt - Core
  QtWebEngine provides a Web browser engine that makes it easy to embed content
