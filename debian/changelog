@@ -1,5 +1,12 @@
+deepin-webengine (1.0.0-2) unstable; urgency=medium
+
+  * Update package deps.
+
+ -- xushaohua <xushaohua@deepin.com>  Tue, 30 Jan 2018 10:03:04 +0800
+
 deepin-webengine (1.0.0-1) unstable; urgency=medium
 
   * Initial release.
 
  -- xushaohua <xushaohua@deepin.com>  Fri, Jan 26 14:04:58 +0800
+

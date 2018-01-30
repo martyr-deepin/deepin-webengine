@@ -81,7 +81,7 @@ resources.files = $$REPACK_DIR/deepinwebengine_resources.pak \
     $$REPACK_DIR/deepinwebengine_resources_200p.pak \
     $$REPACK_DIR/deepinwebengine_devtools_resources.pak
 
-icu.files = $$OUT_PWD/$$getConfigDir()/icudtl.dat
+icu.files = $$OUT_PWD/$$getConfigDir()/deepin-icudtl.dat
 
 !debug_and_release|!build_all|CONFIG(release, debug|release) {
     qtConfig(framework) {

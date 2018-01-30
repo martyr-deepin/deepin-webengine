@@ -258,15 +258,15 @@ QString icuDataPath()
     static QString potentialResourcesPath = QLibraryInfo::location(QLibraryInfo::DataPath) % QLatin1String("/resources");
     if (!initialized) {
         initialized = true;
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/icudtl.dat"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepin-icudtl.dat"))) {
             qWarning("Qt WebEngine ICU data not found at %s. Trying parent directory...", qPrintable(potentialResourcesPath));
             potentialResourcesPath = QLibraryInfo::location(QLibraryInfo::DataPath);
         }
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/icudtl.dat"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepin-icudtl.dat"))) {
             qWarning("Qt WebEngine ICU data not found at %s. Trying application directory...", qPrintable(potentialResourcesPath));
             potentialResourcesPath = QCoreApplication::applicationDirPath();
         }
-        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/icudtl.dat"))) {
+        if (!QFileInfo::exists(potentialResourcesPath % QLatin1String("/deepin-icudtl.dat"))) {
             qWarning("Qt WebEngine ICU data not found at %s. Trying fallback directory... The application MAY NOT work.", qPrintable(potentialResourcesPath));
             potentialResourcesPath = fallbackDir();
         }
