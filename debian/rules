@@ -107,6 +107,10 @@ override_dh_auto_clean:
 	#done
 
 override_dh_auto_configure:
+	# Get submodule first.
+	git submodule update --init --recursive
+	git submodule update --remote
+
 	# Run qmake once to create .qmake.conf and be sure to append the following values.
 	qmake WEBENGINE_CONFIG+="$(defines)" QT_BUILD_PARTS+=" tests" QMAKE_EXTRA_ARGS+="$(config_args)"
 
