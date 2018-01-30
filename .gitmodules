@@ -1,5 +1,5 @@
 [submodule "src/3rdparty"]
 	path = src/3rdparty
-	url = ./deepin-webengine-chromium
-    ignore = all
-    initrepo = true
+	url = ../deepin-webengine-chromium
+	ignore = all
+	initrepo = true
