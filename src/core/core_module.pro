@@ -76,10 +76,10 @@ LOCALE_LIST = am ar bg bn ca cs da de el en-GB en-US es-419 es et fa fi fil fr g
 for(LOC, LOCALE_LIST) {
     locales.files += $$REPACK_DIR/deepinwebengine_locales/$${LOC}.pak
 }
-resources.files = $$REPACK_DIR/deepinwebengine_resources.pak \
-    $$REPACK_DIR/deepinwebengine_resources_100p.pak \
-    $$REPACK_DIR/deepinwebengine_resources_200p.pak \
-    $$REPACK_DIR/deepinwebengine_devtools_resources.pak
+resources.files = $$REPACK_DIR/qtwebengine_resources.pak \
+    $$REPACK_DIR/qtwebengine_resources_100p.pak \
+    $$REPACK_DIR/qtwebengine_resources_200p.pak \
+    $$REPACK_DIR/qtwebengine_devtools_resources.pak
 
 icu.files = $$OUT_PWD/$$getConfigDir()/icudtl.dat
 
@@ -99,7 +99,7 @@ icu.files = $$OUT_PWD/$$getConfigDir()/icudtl.dat
         locales.CONFIG += no_check_exist
         locales.path = $$[QT_INSTALL_TRANSLATIONS]/deepinwebengine_locales
         resources.CONFIG += no_check_exist
-        resources.path = $$[QT_INSTALL_DATA]/resources
+        resources.path = $$[QT_INSTALL_DATA]/deepin-resources
         INSTALLS += locales resources
 
         !use?(system_icu) {
