@@ -1,5 +1,5 @@
 Source: deepin-webengine
-Maintainer: xushaohua<xushaohua@deepin.com>
+Maintainer: xushaohua <xushaohua@deepin.com>
 Section: libs
 Priority: optional
 Build-Depends: bison,
