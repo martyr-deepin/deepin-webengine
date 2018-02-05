@@ -81,7 +81,7 @@ Vcs-Git: https://ci.deepin.org/deepin-webengine.git
 Homepage: https://doc.qt.io/qt-5/qtwebengine-index.html
 
 Package: libdeepin-webengine
-Architecture: amd64 arm64 armhf i386 mipsel
+Architecture: amd64 arm64 armhf i386 mipsel mips64el
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends}
@@ -93,7 +93,7 @@ Description: Web content engine library for Qt - Core
  This package contains QtWebEngine library.
 
 Package: libdeepin-webengine-dev
-Architecture: amd64 arm64 armhf i386 mipsel
+Architecture: amd64 arm64 armhf i386 mipsel mips64el
 Multi-Arch: same
 Depends: ${misc:Depends},
          ${shlibs:Depends},

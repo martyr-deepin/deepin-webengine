@@ -26,11 +26,11 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 gstab_architectures :=
 fulldebug_architectures :=
-disabled_jit_architectures := armel mips mipsel
+disabled_jit_architectures := armel mips mipsel mips64el
 disabled_pch_architectures := amd64 powerpc s390x
 
-small_architectures := armhf mipsel
-no_gold_architectures := arm64 armhf mipsel
+small_architectures := armhf mipsel mips64el
+no_gold_architectures := arm64 armhf mipsel mips64el
 
 defines+=skia_use_system_expat \
          skia_use_system_freetype2 \
