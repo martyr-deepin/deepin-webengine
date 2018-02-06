@@ -156,6 +156,7 @@ ifeq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(no_gold_architectures)))
 	# Do not use ld.gold
 	echo "QMAKE_LFLAGS -= -fuse-ld=gold" >> .qmake.conf
 	echo "QMAKE_LFLAGS += -fuse-ld=bfd" >> .qmake.conf
+	echo "CONFIG -= use_gold_linker" >> .qmake.conf
 endif
 
 	# Make ld not cache the symbol tables of input files in memory to avoid memory exhaustion during the linking phase.
