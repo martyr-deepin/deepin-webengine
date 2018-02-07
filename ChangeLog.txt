@@ -1,0 +1,3 @@
+2018-02-07 5.9.4.1 Xu Shaohua <xushaohua@deepin.com>
+	* Disable ld.gold on mips64el
+	* Remove upstream tags
