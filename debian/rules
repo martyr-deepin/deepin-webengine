@@ -114,7 +114,8 @@ ifneq (,$(wildcard .git/config))
 else
 	rm -rf src/3rdparty/
 	git clone https://cr.deepin.io/deepin-webengine-chromium src/3rdparty
-	cd src/3rdparty && git checkout 5.9.4
+	# NOTE(Shaohua): Make sure this commit id matches id in submodule
+	cd src/3rdparty && git checkout d0aadc0c65d0c8417b
 endif
 	# Run qmake once to create .qmake.conf and be sure to append the following values.
 	qmake WEBENGINE_CONFIG+="$(defines)" QT_BUILD_PARTS+=" tests" QMAKE_EXTRA_ARGS+="$(config_args)"
